@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AXL ROB</title>
+
+<style>
+
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+
+body {
+
+    height: 100vh;
+
+    background:#000;
+
+    overflow:hidden;
+
+    color:#fff;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.bg {
+
+    position:fixed;
+
+    top:0; left:-50%;
+
+    width:200%; height:100%;
+
+    background:url('https://i.ibb.co/C3BzQCfk/Picsart-25-11-27-13-07-45-911.png') repeat-x center/cover;
+
+    animation:move 55s linear infinite;
+
+    z-index:-1;
+
+}
+
+@keyframes move { 0% { transform:translateX(0); } 100% { transform:translateX(50%); } }
+
+.box {
+
+    width:90%; max-width:700px;
+
+    margin-top:25px; margin-bottom:120px;
+
+    padding:35px; border-radius:25px;
+
+    backdrop-filter:blur(18px) saturate(160%);
+
+    background:rgba(0,0,0,0.45);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    box-shadow:0 0 25px rgba(255,255,255,0.1);
+
+    overflow-y:auto;
+
+    max-height:calc(100vh - 150px);
+
+}
+
+.page { display:none; opacity:0; transform:translateY(20px); transition:0.5s; }
+
+.page.active { display:block; opacity:1; transform:translateY(0); }
+
+.title { font-size:2.5rem; font-weight:bold; margin-bottom:20px; text-shadow:0 0 10px rgba(255,255,255,0.3); text-align:center; }
+
+.desc { font-size:1.2rem; color:#dcdcdc; margin-bottom:25px; text-align:center; }
+
+.btns { display:flex; justify-content:center; gap:20px; }
+
+.btn { padding:12px 26px; border-radius:16px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#fff; text-decoration:none; backdrop-filter:blur(10px); transition:0.3s; font-weight:bold; }
+
+.btn:hover { background:rgba(255,255,255,0.2); color:#000; transform:scale(1.06); }
+
+.tabs {
+
+    position:fixed; bottom:25px; width:90%; max-width:700px;
+
+    display:flex; justify-content:space-around; padding:12px;
+
+    border-radius:22px; backdrop-filter:blur(20px);
+
+    background:rgba(255,255,255,0.07);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    box-shadow:0 0 20px rgba(255,255,255,0.15);
+
+}
+
+.tab { padding:10px 22px; border-radius:14px; background:rgba(255,255,255,0.05); transition:0.3s; cursor:pointer; font-size:0.95rem; }
+
+.tab.active { background:rgba(255,255,255,0.23); color:#000; font-weight:bold; }
+
+.leak-card {
+
+    margin-bottom:35px; background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(20px); border-radius:20px;
+
+    padding:15px; box-shadow: 0 8px 25px rgba(0,0,0,0.28);
+
+    opacity:0; transform: translateY(20px);
+
+    transition:0.5s ease, transform 0.5s ease; text-align:center;
+
+}
+
+.leak-card.show { opacity:1; transform:translateY(0);}
+
+.leak-card h2 { font-size:1.6rem; margin-bottom:6px;}
+
+.leak-card p { font-size:1rem; opacity:0.85; margin-bottom:10px;}
+
+.leak-card img { width:100%; border-radius:15px; box-shadow:0 8px 25px rgba(0,0,0,0.3); transform:scale(0.95); opacity:0; transition:0.5s ease, transform 0.5s ease;}
+
+.leak-card img.show { transform:scale(1); opacity:1;}
+
+.leak-card img:hover { transform:scale(1.03); transition:0.3s ease; }
+
+.show-more-btn {
+
+    display:block; margin:15px auto 0 auto;
+
+    padding:10px 20px; border-radius:14px;
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    cursor:pointer; font-weight:bold; transition:0.3s;
+
+}
+
+.show-more-btn:hover { background:rgba(255,255,255,0.2); color:#000; }
+
+#world-times { list-style:none; padding:0; margin-top:15px; display:none; }
+
+#world-times li { margin-bottom:6px; text-align:right; color:#dcdcdc; font-size:1rem; }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="box">
+
+  <div id="home" class="page active">
+
+    <div class="title">AXL ROB</div>
+
+    <div class="desc">هنا نقدم لكم عالم Roblox بطريقة جديدة</div>
+
+    <div class="btns">
+
+        <a href="https://t.me/axlblox" class="btn">قناة المطور</a>
+
+        <a href="https://t.me/mmcmy" class="btn">قناتنا الاساسية</a>
+
+    </div>
+
+  </div>
+
+  <div id="leaks" class="page">
+
+    <div class="title">التسريبات</div>
+
+    <div class="desc">آخر الأخبار والملفات الخاصة بـ Roblox</div>
+
+    <div class="leak-card"><h2>سيتم اضافة 12x. حظ 😱</h2><p>في هذا التحديث</p><img src="https://cdn.discordapp.com/attachments/1376019152103280751/1443293563541655603/image.png?ex=69293420&is=6927e2a0&hm=6efdee58e2bb0a5f84c5b35d18c1b5c87760d704c15dc29c131117faf373f0f2&" alt=""></div>
+
+    <div class="leak-card"><h2>ايسوك الكريسمس</h2><p>يوم 5/6 ديسمبر</p><img src="https://cdn.discordapp.com/attachments/1376019152103280751/1442906476778885280/image.png?ex=6929c5df&is=6928745f&hm=65640318de45be96e5f2fc63a85bb673ecd6f54c7c5c80ba1a0dbf550814e366&" alt=""></div>
+
+    <div class="leak-card"><h2>لفازكا كريسمس</h2><p>ايضا يوم 6/5 ديسمبر</p><img src="https://cdn.discordapp.com/attachments/1376019152103280751/1442993650006102088/image.png?ex=69296e4f&is=69281ccf&hm=ad9ce40fe4d508a7da29fe57f7bf91e6b27a884c28c3de370a5aa638a1b602cf&" alt=""></div>
+
+    <div class="leak-card"><h2>رجوع تونج تونج تونج ساهور!</h2><p>و بترند قديم اسمه تابوت!!!</p><img src="https://i.ibb.co/C3sG8YJz/Screenshot.jpg" alt=""></div>
+
+  </div>
+
+  <div id="updates" class="page">
+
+    <div class="title">التحديثات</div>
+
+    <div class="desc">جميع التغييرات الجديدة سيتم عرضها هنا</div>
+
+    <div class="leak-card show" id="update-card">
+
+        <h2>تحديث سبت 🔨</h2>
+
+        <p>التحديث يوم 29 نوفمبر الساعة 23:00</p>
+
+        <img src="https://i.ytimg.com/vi/iXaVfvJ7l6U/hqdefault.jpg" alt="تحديث سبت">
+
+        <button class="show-more-btn" id="toggle-times">إظهار المزيد</button>
+
+        <ul id="world-times"></ul>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="tabs">
+
+  <div class="tab active" data-page="home">الرئيسية</div>
+
+  <div class="tab" data-page="leaks">التسريبات</div>
+
+  <div class="tab" data-page="updates">التحديثات</div>
+
+</div>
+
+<script>
+
+const tabs=document.querySelectorAll('.tab');
+
+const pages=document.querySelectorAll('.page');
+
+tabs.forEach(tab=>{tab.onclick=()=>{
+
+    tabs.forEach(t=>t.classList.remove('active'));
+
+    tab.classList.add('active');
+
+    const target=tab.dataset.page;
+
+    pages.forEach(p=>p.classList.remove('active'));
+
+    document.getElementById(target).classList.add('active');
+
+    if(target==="leaks"){
+
+        const cards=document.querySelectorAll('#leaks .leak-card');
+
+        cards.forEach((card,idx)=>{setTimeout(()=>{
+
+            card.classList.add('show');
+
+            const img=card.querySelector('img');
+
+            img.classList.add('show');
+
+        },idx*300)});
+
+    }
+
+    if(target==="updates"){
+
+        const card=document.getElementById("update-card");
+
+        setTimeout(()=>{
+
+            card.classList.add('show');
+
+            const img=card.querySelector('img');
+
+            img.classList.add('show');
+
+        },300);
+
+    }
+
+}});
+
+// --- العد التنازلي بالأيام والساعات والدقائق والثواني ---
+
+const updateTime=new Date("November 29, 2025 23:00:00 GMT+0000");
+
+const countries=[
+
+    {name:"العراق", offset:3},
+
+    {name:"مصر", offset:2},
+
+    {name:"سوريا", offset:3},
+
+    {name:"المغرب", offset:0},
+
+    {name:"السعودية", offset:3},
+
+    {name:"تونس", offset:1},
+
+    {name:"الإمارات", offset:4},
+
+    {name:"الكويت", offset:3},
+
+    {name:"ليبيا", offset:2},
+
+    {name:"قطر", offset:3},
+
+    {name:"البحرين", offset:3}
+
+];
+
+const worldTimesEl=document.getElementById("world-times");
+
+countries.forEach(c=>{
+
+    const li=document.createElement("li");
+
+    li.id=`time-${c.name.replace(/\s+/g,'')}`;
+
+    li.textContent=`${c.name}: -- يوم -- ساعة -- دقيقة -- ثانية`;
+
+    worldTimesEl.appendChild(li);
+
+});
+
+if("Notification" in window && Notification.permission!=="granted"){Notification.requestPermission();}
+
+function updateCountdown(){
+
+    const now=new Date();
+
+    countries.forEach(c=>{
+
+        const countryTime=new Date(updateTime.getTime() + (c.offset*60*60*1000));
+
+        const diff=countryTime-now;
+
+        const li=document.getElementById(`time-${c.name.replace(/\s+/g,'')}`);
+
+        if(diff<=0){
+
+            li.textContent=`${c.name}: تم التحديث! 🔔`;
+
+            if(Notification.permission==="granted"){ new Notification(`تحديث Roblox - ${c.name}`,{body:"تم وصول التحديث! 🔔"});}
+
+        } else {
+
+            const days=Math.floor(diff/(1000*60*60*24));
+
+            const hours=Math.floor((diff/(1000*60*60))%24);
+
+            const minutes=Math.floor((diff/1000/60)%60);
+
+            const seconds=Math.floor((diff/1000)%60);
+
+            li.textContent=`${c.name}: ${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+
+        }
+
+    });
+
+}
+
+setInterval(updateCountdown,1000);
+
+updateCountdown();
+
+// زر إظهار المزيد
+
+const toggleBtn=document.getElementById("toggle-times");
+
+toggleBtn.onclick=()=>{
+
+    if(worldTimesEl.style.display==="none"){   
+
+        worldTimesEl.style.display="block";   
+
+        toggleBtn.textContent="إخفاء التفاصيل";
+
+    } else {   
+
+        worldTimesEl.style.display="none";   
+
+        toggleBtn.textContent="إظهار المزيد";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
