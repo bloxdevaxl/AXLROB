@@ -1,395 +1,430 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AXL ROB</title>
-
-<style>
-
-* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
-
-body {
-
-    height: 100vh;
-
-    background:#000;
-
-    overflow:hidden;
-
-    color:#fff;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-}
-
-.bg {
-
-    position:fixed;
-
-    top:0; left:-50%;
-
-    width:200%; height:100%;
-
-    background:url('https://i.ibb.co/C3BzQCfk/Picsart-25-11-27-13-07-45-911.png') repeat-x center/cover;
-
-    animation:move 55s linear infinite;
-
-    z-index:-1;
-
-}
-
-@keyframes move { 0% { transform:translateX(0); } 100% { transform:translateX(50%); } }
-
-.box {
-
-    width:90%; max-width:700px;
-
-    margin-top:25px; margin-bottom:120px;
-
-    padding:35px; border-radius:25px;
-
-    backdrop-filter:blur(18px) saturate(160%);
-
-    background:rgba(0,0,0,0.45);
-
-    border:1px solid rgba(255,255,255,0.15);
-
-    box-shadow:0 0 25px rgba(255,255,255,0.1);
-
-    overflow-y:auto;
-
-    max-height:calc(100vh - 150px);
-
-}
-
-.page { display:none; opacity:0; transform:translateY(20px); transition:0.5s; }
-
-.page.active { display:block; opacity:1; transform:translateY(0); }
-
-.title { font-size:2.5rem; font-weight:bold; margin-bottom:20px; text-shadow:0 0 10px rgba(255,255,255,0.3); text-align:center; }
-
-.desc { font-size:1.2rem; color:#dcdcdc; margin-bottom:25px; text-align:center; }
-
-.btns { display:flex; justify-content:center; gap:20px; }
-
-.btn { padding:12px 26px; border-radius:16px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#fff; text-decoration:none; backdrop-filter:blur(10px); transition:0.3s; font-weight:bold; }
-
-.btn:hover { background:rgba(255,255,255,0.2); color:#000; transform:scale(1.06); }
-
-.tabs {
-
-    position:fixed; bottom:25px; width:90%; max-width:700px;
-
-    display:flex; justify-content:space-around; padding:12px;
-
-    border-radius:22px; backdrop-filter:blur(20px);
-
-    background:rgba(255,255,255,0.07);
-
-    border:1px solid rgba(255,255,255,0.15);
-
-    box-shadow:0 0 20px rgba(255,255,255,0.15);
-
-}
-
-.tab { padding:10px 22px; border-radius:14px; background:rgba(255,255,255,0.05); transition:0.3s; cursor:pointer; font-size:0.95rem; }
-
-.tab.active { background:rgba(255,255,255,0.23); color:#000; font-weight:bold; }
-
-.leak-card {
-
-    margin-bottom:35px; background: rgba(255,255,255,0.08);
-
-    backdrop-filter: blur(20px); border-radius:20px;
-
-    padding:15px; box-shadow: 0 8px 25px rgba(0,0,0,0.28);
-
-    opacity:0; transform: translateY(20px);
-
-    transition:0.5s ease, transform 0.5s ease; text-align:center;
-
-}
-
-.leak-card.show { opacity:1; transform:translateY(0);}
-
-.leak-card h2 { font-size:1.6rem; margin-bottom:6px;}
-
-.leak-card p { font-size:1rem; opacity:0.85; margin-bottom:10px;}
-
-.leak-card img { width:100%; border-radius:15px; box-shadow:0 8px 25px rgba(0,0,0,0.3); transform:scale(0.95); opacity:0; transition:0.5s ease, transform 0.5s ease;}
-
-.leak-card img.show { transform:scale(1); opacity:1;}
-
-.leak-card img:hover { transform:scale(1.03); transition:0.3s ease; }
-
-.show-more-btn {
-
-    display:block; margin:15px auto 0 auto;
-
-    padding:10px 20px; border-radius:14px;
-
-    background:rgba(255,255,255,0.08);
-
-    border:1px solid rgba(255,255,255,0.2);
-
-    cursor:pointer; font-weight:bold; transition:0.3s;
-
-}
-
-.show-more-btn:hover { background:rgba(255,255,255,0.2); color:#000; }
-
-#world-times { list-style:none; padding:0; margin-top:15px; display:none; }
-
-#world-times li { margin-bottom:6px; text-align:right; color:#dcdcdc; font-size:1rem; }
-
-</style>
-
-</head>
-
-<body>
-
-<div class="bg"></div>
-
-<div class="box">
-
-  <div id="home" class="page active">
-
-    <div class="title">AXL ROB</div>
-
-    <div class="desc">هنا نقدم لكم عالم Roblox بطريقة جديدة</div>
-
-    <div class="btns">
-
-        <a href="https://t.me/axlblox" class="btn">قناة المطور</a>
-
-        <a href="https://t.me/mmcmy" class="btn">قناتنا الاساسية</a>
-
-    </div>
-
-  </div>
-
-  <div id="leaks" class="page">
-
-    <div class="title">التسريبات</div>
-
-    <div class="desc">آخر الأخبار والملفات الخاصة بـ Roblox</div>
-
-    <div class="leak-card"><h2>سيتم اضافة 12x. حظ 😱</h2><p>في هذا التحديث</p><img src="https://cdn.discordapp.com/attachments/1376019152103280751/1443293563541655603/image.png?ex=69293420&is=6927e2a0&hm=6efdee58e2bb0a5f84c5b35d18c1b5c87760d704c15dc29c131117faf373f0f2&" alt=""></div>
-
-    <div class="leak-card"><h2>ايسوك الكريسمس</h2><p>يوم 5/6 ديسمبر</p><img src="https://cdn.discordapp.com/attachments/1376019152103280751/1442906476778885280/image.png?ex=6929c5df&is=6928745f&hm=65640318de45be96e5f2fc63a85bb673ecd6f54c7c5c80ba1a0dbf550814e366&" alt=""></div>
-
-    <div class="leak-card"><h2>لفازكا كريسمس</h2><p>ايضا يوم 6/5 ديسمبر</p><img src="https://cdn.discordapp.com/attachments/1376019152103280751/1442993650006102088/image.png?ex=69296e4f&is=69281ccf&hm=ad9ce40fe4d508a7da29fe57f7bf91e6b27a884c28c3de370a5aa638a1b602cf&" alt=""></div>
-
-    <div class="leak-card"><h2>رجوع تونج تونج تونج ساهور!</h2><p>و بترند قديم اسمه تابوت!!!</p><img src="https://i.ibb.co/C3sG8YJz/Screenshot.jpg" alt=""></div>
-
-  </div>
-
-  <div id="updates" class="page">
-
-    <div class="title">التحديثات</div>
-
-    <div class="desc">جميع التغييرات الجديدة سيتم عرضها هنا</div>
-
-    <div class="leak-card show" id="update-card">
-
-        <h2>تحديث سبت 🔨</h2>
-
-        <p>التحديث يوم 29 نوفمبر الساعة 23:00</p>
-
-        <img src="https://i.ytimg.com/vi/iXaVfvJ7l6U/hqdefault.jpg" alt="تحديث سبت">
-
-        <button class="show-more-btn" id="toggle-times">إظهار المزيد</button>
-
-        <ul id="world-times"></ul>
-
-    </div>
-
-  </div>
-
-</div>
-
-<div class="tabs">
-
-  <div class="tab active" data-page="home">الرئيسية</div>
-
-  <div class="tab" data-page="leaks">التسريبات</div>
-
-  <div class="tab" data-page="updates">التحديثات</div>
-
-</div>
-
-<script>
-
-const tabs=document.querySelectorAll('.tab');
-
-const pages=document.querySelectorAll('.page');
-
-tabs.forEach(tab=>{tab.onclick=()=>{
-
-    tabs.forEach(t=>t.classList.remove('active'));
-
-    tab.classList.add('active');
-
-    const target=tab.dataset.page;
-
-    pages.forEach(p=>p.classList.remove('active'));
-
-    document.getElementById(target).classList.add('active');
-
-    if(target==="leaks"){
-
-        const cards=document.querySelectorAll('#leaks .leak-card');
-
-        cards.forEach((card,idx)=>{setTimeout(()=>{
-
-            card.classList.add('show');
-
-            const img=card.querySelector('img');
-
-            img.classList.add('show');
-
-        },idx*300)});
-
-    }
-
-    if(target==="updates"){
-
-        const card=document.getElementById("update-card");
-
-        setTimeout(()=>{
-
-            card.classList.add('show');
-
-            const img=card.querySelector('img');
-
-            img.classList.add('show');
-
-        },300);
-
-    }
-
-}});
-
-// --- العد التنازلي بالأيام والساعات والدقائق والثواني ---
-
-const updateTime=new Date("November 29, 2025 23:00:00 GMT+0000");
-
-const countries=[
-
-    {name:"العراق", offset:3},
-
-    {name:"مصر", offset:2},
-
-    {name:"سوريا", offset:3},
-
-    {name:"المغرب", offset:0},
-
-    {name:"السعودية", offset:3},
-
-    {name:"تونس", offset:1},
-
-    {name:"الإمارات", offset:4},
-
-    {name:"الكويت", offset:3},
-
-    {name:"ليبيا", offset:2},
-
-    {name:"قطر", offset:3},
-
-    {name:"البحرين", offset:3}
-
-];
-
-const worldTimesEl=document.getElementById("world-times");
-
-countries.forEach(c=>{
-
-    const li=document.createElement("li");
-
-    li.id=`time-${c.name.replace(/\s+/g,'')}`;
-
-    li.textContent=`${c.name}: -- يوم -- ساعة -- دقيقة -- ثانية`;
-
-    worldTimesEl.appendChild(li);
-
-});
-
-if("Notification" in window && Notification.permission!=="granted"){Notification.requestPermission();}
-
-function updateCountdown(){
-
-    const now=new Date();
-
-    countries.forEach(c=>{
-
-        const countryTime=new Date(updateTime.getTime() + (c.offset*60*60*1000));
-
-        const diff=countryTime-now;
-
-        const li=document.getElementById(`time-${c.name.replace(/\s+/g,'')}`);
-
-        if(diff<=0){
-
-            li.textContent=`${c.name}: تم التحديث! 🔔`;
-
-            if(Notification.permission==="granted"){ new Notification(`تحديث Roblox - ${c.name}`,{body:"تم وصول التحديث! 🔔"});}
-
-        } else {
-
-            const days=Math.floor(diff/(1000*60*60*24));
-
-            const hours=Math.floor((diff/(1000*60*60))%24);
-
-            const minutes=Math.floor((diff/1000/60)%60);
-
-            const seconds=Math.floor((diff/1000)%60);
-
-            li.textContent=`${c.name}: ${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXL SYSTEM | VIP ACCESS</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --gold-primary: #d4af37;
+            --gold-secondary: #aa7c11;
+            --gold-light: #f3e5ab;
+            --glass-bg: rgba(18, 18, 22, 0.65);
+            --glass-border: rgba(212, 175, 55, 0.25);
+            --liquid-glow: rgba(212, 175, 55, 0.15);
         }
 
-    });
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+        }
 
-}
+        body {
+            background: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(170, 124, 17, 0.05) 0%, transparent 40%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
 
-setInterval(updateCountdown,1000);
+        .liquid-bg {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, var(--gold-secondary), var(--gold-light));
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.3;
+            animation: floatLiquid 12s infinite alternate ease-in-out;
+        }
 
-updateCountdown();
+        @keyframes floatLiquid {
+            0% { transform: translate(-100px, -50px) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.3); }
+        }
 
-// زر إظهار المزيد
+        .main-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 480px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 35px 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1), 0 0 30px var(--liquid-glow);
+            text-align: center;
+        }
 
-const toggleBtn=document.getElementById("toggle-times");
+        .brand-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 30%, var(--gold-light) 70%, var(--gold-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
 
-toggleBtn.onclick=()=>{
+        .brand-header p {
+            font-size: 13px;
+            color: #8a8a93;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    if(worldTimesEl.style.display==="none"){   
+        .view-panel {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
 
-        worldTimesEl.style.display="block";   
+        .view-panel.active {
+            display: block;
+        }
 
-        toggleBtn.textContent="إخفاء التفاصيل";
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    } else {   
+        .vip-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
 
-        worldTimesEl.style.display="none";   
+        .btn-free {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-        toggleBtn.textContent="إظهار المزيد";
+        .btn-free:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
 
-    }
+        .btn-premium {
+            background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+            color: #0a0a0c;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
+        }
 
-}
+        .btn-premium:hover {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
 
-</script>
+        .quest-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+        }
 
+        .quest-title {
+            font-size: 18px;
+            color: var(--gold-primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .quest-desc {
+            font-size: 14px;
+            color: #b3b3b3;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .timer-circle {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 50%;
+            border: 2px dashed var(--gold-primary);
+            box-shadow: 0 0 15px var(--liquid-glow);
+        }
+
+        .action-btn {
+            background: var(--gold-primary);
+            color: #000;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .action-btn.disabled {
+            background: #2a2a30 !important;
+            color: #5a5a65 !important;
+            pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .key-display-box {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px dashed var(--gold-primary);
+            padding: 15px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 18px;
+            color: #fff;
+            letter-spacing: 2px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .key-display-box:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .copy-tip {
+            font-size: 11px;
+            color: #8a8a93;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+
+        .loader {
+            border: 3px solid rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            border-top: 3px solid var(--gold-primary);
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 30px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="liquid-bg"></div>
+
+    <div class="main-container">
+        <div class="brand-header">
+            <h1>AXL SYSTEM VIP</h1>
+            <p>Premium Key Distribution</p>
+        </div>
+
+        <div id="panel-main" class="view-panel active">
+            <button class="vip-btn btn-free" onclick="startQuests()">
+                🎫 الحصول على مفتاح مجاني (Get Key)
+            </button>
+            <a href="https://t.me/AXLKEYBOT" target="_blank" class="vip-btn btn-premium">
+                👑 شراء مفتاح من البوت (Get Premium)
+            </a>
+        </div>
+
+        <div id="panel-quest1" class="view-panel">
+            <div class="quest-box">
+                <div class="quest-title">QUEST 1 / 4</div>
+                <div class="quest-desc">اشترك في قناة اليوتيوب وضع لايك وتعليق لتفعيل العداد.</div>
+                <div id="timer1" class="timer-circle">45</div>
+                <a href="https://youtu.be/IpcRlbhoPRU?si=Qnxcy27lFnEWQ0Dp" target="_blank" class="action-btn" onclick="startTimer(1, 45, 'panel-quest2')">انتقل للمهمة واشترك الآن</a>
+            </div>
+        </div>
+
+        <div id="panel-quest2" class="view-panel">
+            <div class="quest-box">
+                <div class="quest-title">QUEST 2 / 4</div>
+                <div class="quest-desc">اشترك في قناة رولكس على يوتيوب وانتظر انتهاء الوقت.</div>
+                <div id="timer2" class="timer-circle">35</div>
+                <a href="https://youtube.com/@kroloex?si=HmdFSIl75s0DDNZm" target="_blank" class="action-btn" onclick="startTimer(2, 35, 'panel-quest3')">انتقل للقناة واشترك</a>
+            </div>
+        </div>
+
+        <div id="panel-quest3" class="view-panel">
+            <div class="quest-box">
+                <div class="quest-title">QUEST 3 / 4</div>
+                <div class="quest-desc">انضم إلى قناة التليجرام الرسمية الخاصة بي.</div>
+                <div id="timer3" class="timer-circle">35</div>
+                <a href="https://t.me/axcmy" target="_blank" class="action-btn" onclick="startTimer(3, 35, 'panel-quest4')">انضم للقناة هنا</a>
+            </div>
+        </div>
+
+        <div id="panel-quest4" class="view-panel">
+            <div class="quest-box">
+                <div class="quest-title">QUEST 4 / 4</div>
+                <div class="quest-desc">انضم إلى قناة رولكس على التليجرام لاستخراج المفتاح.</div>
+                <div id="timer4" class="timer-circle">35</div>
+                <a href="https://t.me/mmcmy" target="_blank" class="action-btn" onclick="startTimer(4, 35, 'panel-loading')">انضم واكتمل</a>
+            </div>
+        </div>
+
+        <div id="panel-loading" class="view-panel">
+            <div class="quest-title">جاري استخراج المفتاح من السيرفر...</div>
+            <p style="color: #8a8a93; font-size: 14px; margin-top: 10px;">انتظر 5 ثوانٍ فقط لتوليد المفتاح الخاص بك</p>
+            <div class="loader"></div>
+        </div>
+
+        <div id="panel-key" class="view-panel">
+            <div class="quest-title" style="color: #fff;">🔑 تم استخراج المفتاح بنجاح!</div>
+            <p style="color: var(--gold-primary); font-size: 13px; margin-top: 5px;">يعمل مباشرة داخل اللعبة بدون قيود</p>
+            
+            <div class="key-display-box" id="keyBox" onclick="copyKey()">------</div>
+            <p class="copy-tip">اضغط على المربع أعلاه لنسخ المفتاح تلقائياً</p>
+
+            <button class="vip-btn btn-free" style="margin-top: 10px;" onclick="location.reload()">العودة للرئيسية</button>
+        </div>
+    </div>
+
+    <script>
+        // مصفوفة تحتوي على كافة المفاتيح التي قمت بتزويدي بها
+        const keysData = [
+            "AX-HD-8", "GFX-DRV", "LX-THE-BEST", "XVHR8", "KX-KEY-59", "JX-DEV", "XSL522", "ZT-ADM-ACE", 
+            "JX-PRO-ELITE", "QR-CFG", "FX-DEV-95", "BQM516", "RY837", "IJMA78", "HX-TOP-44", "BX-THE-PRO", 
+            "KX-DEV-MAX", "XV-DEV-ACE", "QUET761", "FXY85", "MK-THE-58", "KX-THE-50", "NX-ADM-29", "HX-MAX-5", 
+            "CX-OPT-93", "IJYU856", "SFTI430", "KX-USR-PRIME", "NX-HD-CORE", "YX-DEV", "FX-CR-90", "BX-SYS-71", 
+            "JJ499", "IWKY871", "BX-THE", "TX-DEV", "YR646", "DX-SET-4", "RX-CR-PRO", "FX-SET", "YX-DEV-MAX", 
+            "GFX-CFG-PLUS", "CX-THE", "JX-OPT-ELITE", "XV-SET-2", "RX-MAX-PLUS", "PX-OPT-ULTRA", "KX-TOP-70", 
+            "CX-CR-MAX", "LKVO998", "FX-CR-61", "LUZ227", "AX-CR-59", "SY86", "FWYB296", "ZT-API-99", 
+            "TL400", "FX-CFG", "QOMH334", "BX-LOG", "XE350", "YX-MAX", "RIR406", "KX-CR", "NX-DEV", "BX-CR-ULTRA", 
+            "IAR900", "MK-API-PLUS", "GFX-PRO-BEST", "QR-CFG-71", "AX-ADM-29", "YX-SET", "HX-SET-37", "LX-USR-PRO", 
+            "JX-NET", "NX-CFG-PRO", "QR-THE-43", "EZ880", "AX-PRO", "DX-SET", "JX-HD-PRIME", "FHK377", "TWVM95", 
+            "DX-CFG-PRO", "ZT-SET-CORE", "PX-ADM-CORE", "YX-SYS", "MK-LOG", "AX-DEV-PRO", "AX-HD-CORE", "AP844", 
+            "GFX-HD-1", "QR-MAX", "MK-MAX-71", "CX-API-PLUS", "CX-DRV", "MK-API-PRO", "AX-OPT-ONE", "UMK715", 
+            "GR405", "JX-SET", "GFX-MAX", "NX-CR", "BX-SEC-ONE", "QR-SET-ELITE", "JX-CFG-42", "JX-SEC", "BX-SEC-33", 
+            "PX-SEC", "XV-SYS-60", "WX-SET-ACE", "YX-CFG-95", "QR-KEY-ELITE", "QR-ADM", "GFX-SYS-MAX", "MK-HD", 
+            "DX-PRO-ONE", "YX-KEY-ONE", "LX-PRO-PLUS", "RGYJ746", "ZT-VH-ULTRA", "FX-TOP-ULTRA", "AX-HD", 
+            "QR-DEV-PRO", "DX-HD", "RX-MAX-CORE", "ARW289", "MK-CR-73", "EX862", "RGNP24", "YX-PRO-ACE", "YX-HD-95", 
+            "DVUW536", "BX-TOP-ULTRA", "XV-VH-CORE", "DT849", "PX-THE-MAX", "YGU465", "ZT-API", "NX-DRV-PRIME", 
+            "GFX-THE-MAX", "LX-API-PLUS", "QR-NET-80", "TX-VH-PLUS", "DX-USR", "KPOY21", "JX-TOP", "FL922", 
+            "SFY128", "PX-CR", "XV-SEC-30", "BX-ADM", "HR383", "LX-SEC-PRO", "TX-MAX", "TX-HD-12", "NX-OPT", 
+            "NX-NET-ULTRA", "FX-LOG-20", "TX-TOP-69", "XV-DRV", "TX-OPT-76", "MK-VH", "ZT-VH-43", "TX-VH-ACE", 
+            "TYF353", "FX-HD", "RX-MAX-ACE", "MK-KEY", "BX-SEC-24", "TX-USR-PRO", "NYF130", "NX-API-19", 
+            "GUP713", "FX-SYS-PRO", "DX-CFG-70", "IYP905", "MK-PRO-73", "EOCC370", "TX-PRO", "DX-DEV-43", 
+            "RX-SEC-ULTRA", "KACH285", "MQM245", "WX-CR-BEST", "WVAQ509", "IB764", "MK-MAX-68", "JRK229", 
+            "CX-VH", "EXVR212", "FX-DRV", "PX-DRV-30", "WX-TOP-89", "HX-NET-69", "HX-CR-PRIME", "TSF513", 
+            "NX-DRV-98", "NX-PRO-PLUS", "JX-KEY", "QR-ADM-31", "LX-USR-ULTRA", "ZFOB633", "EER516", "AX-DRV-16", 
+            "TX-KEY-49", "GFX-THE-ULTRA", "CX-MAX-66", "PX-SYS-27", "XV-DEV-48", "ZT-MAX", "TX-LOG-52", "WX-CR-PLUS", 
+            "DJDP323", "ASH528", "YZCC558", "MK-SEC-17", "DX-TOP-BEST", "GFX-KEY-PLUS", "KLCQ61", "JX-CFG", 
+            "WX-VH", "DX-THE-BEST", "DX-LOG", "NSSV666", "XV-THE", "WX-SEC-PLUS", "GFX-MAX-ULTRA", "ISUH293", 
+            "XV-NET-CORE", "OMH383", "KX-THE-CORE", "NX-API-12", "PX-PRO-31", "EC153", "UM813", "MVOF816", 
+            "FX-DRV-53", "BX-TOP", "GFX-OPT", "FX-NET-29", "DX-THE-PRO", "KX-PRO-94", "AX-LOG-54", "PX-NET-BEST", 
+            "NX-THE", "HX-OPT", "MK-HD-11", "LX-PRO-42", "EKPJ530", "BX-OPT", "XV-SYS-MAX", "XV-SET", 
+            "YX-API", "HX-OPT-20", "HX-DRV-ACE", "UBZC58", "GMUM88", "CX-SEC", "BZX551", "XT71", 
+            "NZQI362", "WX-DRV-95", "CZU435", "TX-PRO-PRO", "LX-MAX", "VZVZ901", "JX-THE", "NX-VH", 
+            "KX-DRV-ACE", "PX-HD-90", "CX-MAX", "XV-PRO-PRO", "SHLE183", "PX-OPT", "DX-THE", "AQPO865", 
+            "BX-CFG-ONE", "GFX-PRO", "NCLP733", "DG440", "QR-OPT-95", "EYKU540", "CEXL576", "XV-PRO-85", 
+            "GFX-CFG", "RX-VH-ACE", "MK-KEY-84", "TX-HD-20", "QEEW279", "RX-SYS", "NYWO874", "YX-PRO", 
+            "XV-SEC-PRO", "OL630", "QR-API-92", "MK-USR-ULTRA", "XV-ADM-65", "XV-OPT", "JX-USR-47", "KD420", 
+            "WX-THE", "LX-SEC", "NX-API", "FU511", "JX-SYS-PRIME", "KX-ADM-40", "LX-CFG", "HX-CFG-93", 
+            "PX-TOP-ACE", "XV-API-PRO", "CX-OPT-89", "OH840", "LX-OPT", "PW460", "CX-CR-15", "YX-DEV-46", 
+            "GFX-SET-PRIME", "PX-USR-9", "MU538", "VVPW497", "PX-ADM", "KX-HD-BEST", "WX-TOP", "AX-SET-MAX", 
+            "QR-DEV-CORE", "MK-SEC-84", "AX-OPT-17", "YX-TOP-43", "JX-KEY-PRO", "CI119", "FX-VH", 
+            "CX-CFG-ULTRA", "AX-SET", "XV-HD", "GFX-PRO-PRO", "QR-SET", "XV-SYS-55", "AX-OPT-49", "ORC685", 
+            "AX471", "QR-SYS-CORE", "WX-TOP-CORE", "GFX-ADM", "YX-ADM", "NX-MAX-21", "RQ811", "WX-CFG-ACE", 
+            "LX-HD-67", "DX-SEC-PRO", "CX-CFG-92", "XV-USR-87", "WX-USR", "CX-OPT-21", "TX-DEV-13", "TX-SET-84", 
+            "NX-LOG-ONE", "LWFK916", "MELQ313", "KX-SYS-ONE", "ZT-VH-30", "KX-NET-8", "DX-THE-ULTRA", "KX-THE", 
+            "PX-HD", "MK-SET", "PX-ADM-PRO", "LX-DRV-45", "PX-LOG", "YX-CFG-PLUS", "AX-LOG-ELITE", "UQH919", 
+            "ZT-MAX-91", "YID349", "LX-PRO-22", "MK-SYS", "AXF166", "ZT-DRV-BEST", "AX-VH-PRIME", "PX-PRO", 
+            "RX-NET-44", "GSAL231", "ZT-TOP-ULTRA", "KX-SEC-33", "QR-HD", "DYOF51", "PX-CFG-PRIME", "RZO314", 
+            "QR-HD-PRO", "JX-SYS-ULTRA", "BX-SEC-CORE", "DX-TOP-CORE", "PX-MAX-88", "ZT-SYS-69", "GWTB868", 
+            "ZT-DRV-ONE", "ZT-SET-44", "RX-DEV-PLUS", "PX-DRV-MAX", "RX-ADM-MAX", "XZMP405", "PX-USR-PRIME", 
+            "SNG204", "FX-MAX-56", "JX-LOG", "NX-NET-ELITE", "KX-CFG-19", "QTIS134", "PX-LOG-22", "HX-DEV-ELITE", 
+            "JX-ADM", "WOH521", "MK-DRV-BEST", "MK-CR", "LYL857", "VSG835", "LX-CR", "AX-MAX", "HX-PRO", 
+            "KK338", "CX-SYS-3", "HX612", "YX-SEC", "TX-SEC-73", "HX-PRO-10", "WX-LOG-PRO", "JX-NET-27", 
+            "HX-CR-34", "QR-OPT-PLUS", "CX-DEV", "GFX-API", "WF369", "DILA147", "JX-HD-42", "BX-USR-69", 
+            "TNER403", "KX-CFG-PRIME", "WX-SET", "BX-VH-ACE", "KX-TOP-ONE", "RX-VH", "DX-SET-94", "ONGE16", 
+            "TX-KEY", "SVWY550", "WX-LOG-21", "YU337", "MK-PRO-53", "XV-ADM-CORE", "DX-USR-88", "RX-API", 
+            "AX-DEV-20", "HX-THE-14", "JX-THE-PLUS", "QR-SYS-PRIME", "PX-KEY-MAX", "JX-NET-MAX", "LX-KEY-53", 
+            "AX676", "ZT-ADM-8", "LX-TOP-PRIME", "ZT-SYS-74", "FX-THE-ACE", "DC859", "YX-SYS-ELITE", "FX-MAX", 
+            "FX-MAX-PRO", "LX-PRO", "DX-API", "KX-SEC-CORE", "QR-DEV-PLUS", "JX-SET-58", "VRU597", "AX-TOP-6", 
+            "NX-MAX-65", "QPI711", "HX-SYS", "MK-SYS-53", "NX-ADM-5", "FX-LOG-CORE", "NX-THE-6", "ZT-NET-MAX", 
+            "HN487", "BX-NET-17", "SD75", "GFX-THE", "UIK927", "BX854", "CX-KEY-ULTRA", "FX-ADM", "WX-CR-PRIME", 
+            "RX-KEY-BEST", "KX-NET", "PX-DEV-ONE", "QR-PRO-57", "JX-USR-ULTRA", "QR-LOG", "PX-PRO-38", 
+            "FX-DEV-41", "SS262", "LX-SYS-28", "GFX-ADM-85", "WX-SYS", "GFX-CR-45"
+        ];
+
+        function switchPanel(panelId) {
+            document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById(panelId).classList.add('active');
+        }
+
+        function startQuests() {
+            switchPanel('panel-quest1');
+        }
+
+        function startTimer(id, seconds, nextPanelId) {
+            const btn = event.target;
+            btn.classList.add('disabled');
+            let timeLeft = seconds;
+            const timerEl = document.getElementById(`timer${id}`);
+            
+            const interval = setInterval(() => {
+                timeLeft--;
+                timerEl.innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    if(nextPanelId === 'panel-loading') {
+                        runLoadingAndGenerateKey();
+                    } else {
+                        switchPanel(nextPanelId);
+                    }
+                }
+            }, 1000);
+        }
+
+        function runLoadingAndGenerateKey() {
+            switchPanel('panel-loading');
+            setTimeout(() => {
+                // ميزة سحب مفتاح عشوائي مباشر بدون Cooldown
+                const randomIndex = Math.floor(Math.random() * keysData.length);
+                const randomKey = keysData[randomIndex];
+                document.getElementById('keyBox').innerText = randomKey;
+                switchPanel('panel-key');
+            }, 5000);
+        }
+
+        function copyKey() {
+            const keyText = document.getElementById('keyBox').innerText;
+            navigator.clipboard.writeText(keyText).then(() => {
+                alert('تم نسخ المفتاح! ضعه في اللعبة مباشرة لتشغيل السكربت.');
+            });
+        }
+    </script>
 </body>
-
 </html>
