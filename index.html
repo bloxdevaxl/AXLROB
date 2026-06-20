@@ -7,12 +7,13 @@
     <style>
         :root {
             --bg-color: #050508;
-            --gold-primary: #d4af37;
-            --gold-secondary: #aa7c11;
-            --gold-light: #f3e5ab;
-            --glass-bg: rgba(10, 10, 14, 0.75);
-            --glass-border: rgba(212, 175, 55, 0.3);
-            --liquid-glow: rgba(212, 175, 55, 0.2);
+            --gold-primary: #ffd700;
+            --gold-secondary: #b8860b;
+            --gold-light: #fffacd;
+            --neon-cyan: #00f3ff;
+            --glass-bg: rgba(10, 10, 15, 0.75);
+            --glass-border: rgba(255, 215, 0, 0.3);
+            --liquid-glow: rgba(255, 215, 0, 0.2);
         }
 
         * {
@@ -26,8 +27,8 @@
         body {
             background: var(--bg-color);
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(170, 124, 17, 0.08) 0%, transparent 50%);
+                radial-gradient(circle at 20% 30%, rgba(0, 243, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.08) 0%, transparent 50%);
             color: #fff;
             min-height: 100vh;
             display: flex;
@@ -35,35 +36,29 @@
             justify-content: center;
             overflow-x: hidden;
             padding: 20px;
-            perspective: 1000px; /* لتهيئة بيئة الـ 3D والـ 4D */
+            perspective: 1000px;
         }
 
-        /* خلفية سائلة متحركة بشكل متطور */
+        /* الخلفية السائلة المتحركة ثلاثية الأبعاد */
         .liquid-bg {
             position: absolute;
             width: 400px;
             height: 400px;
-            background: linear-gradient(45deg, #aa7c11, #f3e5ab, #d4af37, #ffdf7a);
-            background-size: 300% 300%;
-            filter: blur(90px);
+            background: linear-gradient(45deg, var(--gold-secondary), var(--neon-cyan));
+            filter: blur(100px);
             border-radius: 50%;
             z-index: 0;
-            opacity: 0.25;
-            animation: floatLiquid 10s infinite alternate ease-in-out, gradientShift 6s infinite linear;
+            opacity: 0.4;
+            animation: float4D 16s infinite alternate ease-in-out;
         }
 
-        @keyframes floatLiquid {
-            0% { transform: translate(-150px, -80px) scale(1) rotate(0deg); }
-            100% { transform: translate(150px, 80px) scale(1.4) rotate(360deg); }
+        @keyframes float4D {
+            0% { transform: translate(-150px, -100px) scale(1) rotate(0deg); }
+            50% { transform: translate(100px, 50px) scale(1.4) rotate(180deg); }
+            100% { transform: translate(-50px, 150px) scale(0.9) rotate(360deg); }
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* الحاوية الرئيسية المجسمة */
+        /* الحاوية الرئيسية بتأثير الـ 4D والزجاج الاحترافي */
         .main-container {
             position: relative;
             z-index: 10;
@@ -72,42 +67,45 @@
             background: var(--glass-bg);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
+            border: 2px solid var(--glass-border);
+            border-radius: 30px;
             padding: 40px 30px;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15), 0 0 40px var(--liquid-glow);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.8), 
+                        inset 0 1px 2px rgba(255,255,255,0.2), 
+                        0 0 40px var(--liquid-glow);
             text-align: center;
-            transform: style 3d;
-            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+            transform: rotateX(5deg) rotateY(-5deg);
+            transition: transform 0.5s ease;
+        }
+        .main-container:hover {
+            transform: rotateX(0deg) rotateY(0deg) scale(1.02);
         }
 
-        /* تأثير نص 4D احترافي ومتحرك الألوان للهيدر */
+        /* نصوص مذهلة بتأثير 4D ثلاثي الأبعاد مجسم ومتحرك */
         .brand-header h1 {
-            font-size: 32px;
+            font-size: 34px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, #fff, var(--gold-light), var(--gold-primary), #fff);
-            background-size: 200% auto;
+            background: linear-gradient(135deg, #fff, var(--gold-light), var(--gold-primary), var(--neon-cyan));
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: textFlow 4s linear infinite;
-            /* تأثير الابعاد الرباعية بالظلال العميقة */
-            text-shadow: 
-                0 1px 0 #ccc, 0 2px 0 #c5c5c5, 0 3px 0 #bbb, 0 4px 0 #b0b0b0, 
-                0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 
-                0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 
-                0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+            animation: gradientShift 6s ease infinite;
+            letter-spacing: 2px;
+            /* تأثير الـ 3D المجسم */
+            text-shadow: 0 1px 0 #ccc, 0 2px 0 #c5c5c5, 0 3px 0 #bbb, 0 4px 0 #b0b0b0, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
             margin-bottom: 8px;
         }
 
-        @keyframes textFlow {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .brand-header p {
-            font-size: 13px;
+            font-size: 14px;
             color: #a0a0ab;
             margin-bottom: 35px;
             text-transform: uppercase;
@@ -117,62 +115,74 @@
 
         .view-panel {
             display: none;
-            animation: fadeIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: fadeIn4D 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
         .view-panel.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes fadeIn4D {
+            from { opacity: 0; transform: translateY(30px) scale(0.9) rotateX(-10deg); }
+            to { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
         }
 
-        /* أزرار احترافية بتأثيرات حركة وألوان مجسمة */
+        /* تصميم أزرار الـ VIP الفخمة جداً والمجسمة */
         .vip-btn {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 12px;
             width: 100%;
             padding: 18px 25px;
-            margin-bottom: 18px;
+            margin-bottom: 22px;
             border: none;
-            border-radius: 16px;
+            border-radius: 18px;
             font-size: 16px;
             font-weight: 800;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             text-decoration: none;
             position: relative;
             overflow: hidden;
         }
 
+        /* زر الفري النيون المطوّر */
         .btn-free {
-            background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
-            color: #050508;
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3), 0 2px 0px #8a6508;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            color: #fff;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 243, 255, 0.1);
         }
 
         .btn-free:hover {
-            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5), 0 2px 0px #aa7c11;
-            transform: translateY(-4px) scale(1.02);
-        }
-        
-        .btn-free:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.4), inset 0 0 10px rgba(0, 243, 255, 0.2);
+            transform: translateY(-4px) translateZ(10px);
         }
 
-        /* كروت المهام الاحترافية */
+        /* زر البريميوم الذهبي الملكي الفخم جداً */
+        .btn-premium {
+            background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary), var(--gold-light));
+            background-size: 200% auto;
+            color: #050508;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-premium:hover {
+            background-position: right center;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5), 0 0 15px var(--neon-cyan);
+            transform: translateY(-4px) translateZ(15px);
+        }
+
+        /* صندوق المهمة */
         .quest-box {
-            background: rgba(5, 5, 8, 0.5);
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.15);
             border-radius: 20px;
             padding: 30px 20px;
             margin-bottom: 25px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
         }
 
         .quest-title {
@@ -180,18 +190,17 @@
             color: var(--gold-primary);
             margin-bottom: 12px;
             font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
 
         .quest-desc {
-            font-size: 14.5px;
+            font-size: 15px;
             color: #d1d1d6;
             margin-bottom: 25px;
             line-height: 1.6;
         }
 
-        /* العداد الدائري ثلاثي الأبعاد */
+        /* عداد الثواني الدائري المتوهج */
         .timer-circle {
             position: relative;
             width: 110px;
@@ -201,116 +210,100 @@
             align-items: center;
             justify-content: center;
             font-size: 26px;
-            font-weight: 900;
-            color: var(--gold-light);
-            background: rgba(212, 175, 55, 0.05);
+            font-weight: 800;
+            color: #fff;
+            background: rgba(0, 243, 255, 0.03);
             border-radius: 50%;
-            border: 3px dashed var(--gold-primary);
-            box-shadow: 0 0 25px var(--liquid-glow), inset 0 0 15px rgba(212, 175, 55, 0.1);
-            animation: rotateBorder 8s linear infinite;
+            border: 3px dashed var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            animation: rotateDashed 20s linear infinite;
         }
 
-        @keyframes rotateBorder {
-            100% { transform: rotate(360deg); }
-        }
-
-        /* منع دوران النص الداخلي مع الدائرة */
-        .timer-circle span {
-            animation: unrotate 8s linear infinite;
-        }
-        @keyframes unrotate {
-            100% { transform: rotate(-360deg); }
-        }
-
-        .action-btn {
-            background: #fff;
-            color: #000;
-            padding: 14px 30px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
-        }
-        
-        .action-btn:hover {
-            background: var(--gold-primary);
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
-        }
-        
-        .action-btn.disabled {
-            background: #222227 !important;
-            color: #55555f !important;
-            pointer-events: none;
-            border: 1px solid rgba(255,255,255,0.02);
-            box-shadow: none !important;
-        }
-
-        /* نص ماب اكسل الاحترافي بتأثير 4D متحرك رائع */
-        .map-title {
-            font-size: 42px;
-            font-weight: 900;
-            margin: 25px 0;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, #ffea9f 0%, #d4af37 50%, #aa7c11 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: textFlow 3s infinite alternate;
-            filter: drop-shadow(0px 15px 10px rgba(0,0,0,0.6));
-            /* تأثير عمق 4D خطير */
-            text-shadow: 
-                0 1px 0 #b8931d, 0 2px 0 #a48116, 0 3px 0 #907010, 0 4px 0 #7c5e0a,
-                0 5px 0 #684d05, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1),
-                0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 7px 12px rgba(0,0,0,0.4);
-        }
-
-        /* زر الإستلام النهائي الخارق للعادة */
-        .btn-final-trigger {
-            background: linear-gradient(90deg, #ffdf7a, #d4af37, #aa7c11, #ffdf7a);
-            background-size: 200% auto;
-            color: #000 !important;
-            font-size: 18px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
-            animation: pulseGlow 2s infinite, textFlow 3s linear infinite;
-        }
-
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4); }
-            50% { box-shadow: 0 12px 50px rgba(212, 175, 55, 0.7); transform: scale(1.03); }
-            100% { box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4); }
-        }
-
-        /* لودر التحميل الإحترافي */
-        .loader {
-            border: 4px solid rgba(212, 175, 55, 0.05);
-            border-radius: 50%;
-            border-top: 4px solid var(--gold-primary);
-            border-bottom: 4px solid var(--gold-light);
-            width: 60px;
-            height: 60px;
-            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-            margin: 35px auto;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-        }
-
-        @keyframes spin {
+        @keyframes rotateDashed {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        /* إيموجي متحرك لإعطاء حيوية للمنصة */
-        .animated-emoji {
+        .action-btn {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+            color: #000;
+            padding: 14px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 800;
             display: inline-block;
-            animation: bounceEmoji 1.5s infinite ease-in-out alternate;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255,215,0,0.2);
         }
-        @keyframes bounceEmoji {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-6px) scale(1.1); }
+        .action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255,215,0,0.4);
+        }
+        
+        .action-btn.disabled {
+            background: #222226 !important;
+            color: #55555c !important;
+            pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: none;
+        }
+
+        /* صندوق عرض المفتاح المستخرج الحقيقي */
+        .key-display-box {
+            background: rgba(0, 243, 255, 0.05);
+            border: 2px dashed var(--neon-cyan);
+            padding: 18px;
+            border-radius: 16px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+            margin: 25px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            box-shadow: inset 0 0 15px rgba(0, 243, 255, 0.1);
+        }
+
+        .key-display-box:hover {
+            background: rgba(0, 243, 255, 0.1);
+            transform: scale(1.03);
+        }
+
+        .copy-tip {
+            font-size: 12px;
+            color: #8a8a93;
+            margin-top: -15px;
+            margin-bottom: 20px;
+        }
+
+        /* لودر التحميل الفخم */
+        .loader {
+            border: 4px solid rgba(0, 243, 255, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--neon-cyan);
+            border-bottom: 4px solid var(--gold-primary);
+            width: 60px;
+            height: 60px;
+            animation: spin4D 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            margin: 35px auto;
+        }
+
+        @keyframes spin4D {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.15); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* تأثير وميض النيون للإيموجي */
+        .emoji-anim {
+            display: inline-block;
+            animation: pulseEmoji 1.5s infinite alternate;
+        }
+        @keyframes pulseEmoji {
+            0% { transform: scale(1); filter: drop-shadow(0 0 2px #fff); }
+            100% { transform: scale(1.2); filter: drop-shadow(0 0 8px var(--gold-primary)); }
         }
     </style>
 </head>
@@ -321,71 +314,109 @@
     <div class="main-container">
         <div class="brand-header">
             <h1>AXL SYSTEM VIP</h1>
-            <p>Premium Key Distribution</p>
+            <p>💥 Next-Gen 4D Key Distribution 💥</p>
         </div>
 
         <div id="panel-main" class="view-panel active">
-            <button class="vip-btn btn-free" onclick="startQuests()">
-                <span class="animated-emoji" style="margin-left: 8px;">🎫</span> الحصول على مفتاح مجاني (Get Key)
+            <button class="vip-btn btn-free" onclick="playSound('click'); startQuests();">
+                <span class="emoji-anim">🎫</span> الحصول على مفتاح مجاني (Get Key)
             </button>
+            <a href="https://t.me/AXLKEYBOT" target="_blank" class="vip-btn btn-premium" onclick="playSound('click');">
+                <span class="emoji-anim">👑</span> شراء مفتاح VIP من البوت (Premium)
+            </a>
         </div>
 
         <div id="panel-quest1" class="view-panel">
             <div class="quest-box">
-                <div class="quest-title">📢 QUEST 1 / 4</div>
+                <div class="quest-title">🔥 QUEST 1 / 4 🔥</div>
                 <div class="quest-desc">اشترك في قناة اليوتيوب وضع لايك وتعليق لتفعيل العداد.</div>
-                <div id="timer1" class="timer-circle"><span>10</span></div>
-                <a href="https://youtu.be/IpcRlbhoPRU?si=Qnxcy27lFnEWQ0Dp" target="_blank" class="action-btn" onclick="startTimer(1, 10, 'panel-quest2')">انتقل للمهمة واشترك الآن 🚀</a>
+                <div id="timer1" class="timer-circle">10</div>
+                <a href="https://youtu.be/IpcRlbhoPRU?si=Qnxcy27lFnEWQ0Dp" target="_blank" class="action-btn" onclick="playSound('click'); startTimer(1, 10, 'panel-quest2')">انتقل للمهمة واشترك الآن 🚀</a>
             </div>
         </div>
 
         <div id="panel-quest2" class="view-panel">
             <div class="quest-box">
-                <div class="quest-title">🔥 QUEST 2 / 4</div>
+                <div class="quest-title">⚡ QUEST 2 / 4 ⚡</div>
                 <div class="quest-desc">اشترك في قناة رولكس على يوتيوب وانتظر انتهاء الوقت.</div>
-                <div id="timer2" class="timer-circle"><span>10</span></div>
-                <a href="https://youtube.com/@kroloex?si=HmdFSIl75s0DDNZm" target="_blank" class="action-btn" onclick="startTimer(2, 10, 'panel-quest3')">انتقل للقناة واشترك ⚡</a>
+                <div id="timer2" class="timer-circle">10</div>
+                <a href="https://youtube.com/@kroloex?si=HmdFSIl75s0DDNZm" target="_blank" class="action-btn" onclick="playSound('click'); startTimer(2, 10, 'panel-quest3')">انتقل للقناة واشترك 💥</a>
             </div>
         </div>
 
         <div id="panel-quest3" class="view-panel">
             <div class="quest-box">
-                <div class="quest-title">💬 QUEST 3 / 4</div>
+                <div class="quest-title">✨ QUEST 3 / 4 ✨</div>
                 <div class="quest-desc">انضم إلى قناة التليجرام الرسمية الخاصة بي.</div>
-                <div id="timer3" class="timer-circle"><span>10</span></div>
-                <a href="https://t.me/axcmy" target="_blank" class="action-btn" onclick="startTimer(3, 10, 'panel-quest4')">انضم للقناة هنا ✨</a>
+                <div id="timer3" class="timer-circle">10</div>
+                <a href="https://t.me/axcmy" target="_blank" class="action-btn" onclick="playSound('click'); startTimer(3, 10, 'panel-quest4')">انضم للقناة هنا 🌐</a>
             </div>
         </div>
 
         <div id="panel-quest4" class="view-panel">
             <div class="quest-box">
-                <div class="quest-title">👑 QUEST 4 / 4</div>
+                <div class="quest-title">👑 QUEST 4 / 4 👑</div>
                 <div class="quest-desc">انضم إلى قناة رولكس على التليجرام لاستخراج المفتاح.</div>
-                <div id="timer4" class="timer-circle"><span>10</span></div>
-                <a href="https://t.me/mmcmy" target="_blank" class="action-btn" onclick="startTimer(4, 10, 'panel-loading')">انضم واكتمل مبروك 💎</a>
+                <div id="timer4" class="timer-circle">10</div>
+                <a href="https://t.me/mmcmy" target="_blank" class="action-btn" onclick="playSound('click'); startTimer(4, 10, 'panel-loading')">انضم واكتمل الآآن 💎</a>
             </div>
         </div>
 
         <div id="panel-loading" class="view-panel">
-            <div class="quest-title">⏳ جاري تجهيز نظام التوجيه...</div>
-            <p style="color: #8a8a93; font-size: 14px; margin-top: 10px;">انتظر 5 ثوانٍ فقط لتوليد الرابط الآمن</p>
+            <div class="quest-title" style="color: var(--neon-cyan);">🤖 جاري اختراق السيرفر وتوليد المفتاح...</div>
+            <p style="color: #a0a0ab; font-size: 14px; margin-top: 10px;">انتظر 5 ثوانٍ لإنشاء كود غير مستعمل</p>
             <div class="loader"></div>
         </div>
 
         <div id="panel-key" class="view-panel">
-            <div class="quest-title" style="color: #fff;"><span class="animated-emoji">🎉</span> تم التحقق بنجاح!</div>
+            <div class="quest-title" style="color: #fff; font-size: 24px;">🔑 تم توليد المفتاح بنجاح!</div>
+            <p style="color: var(--gold-primary); font-size: 14px; margin-top: 5px; font-weight: bold;">يعمل مباشرة داخل اللعبة بدون أي قيود</p>
             
-            <div class="map-title">ماب اكسل</div>
-            
-            <a href="https://create.roblox.com/dashboard/creations/experiences/6477437559/overview" target="_blank" class="vip-btn btn-final-trigger">
-                🔗 اضغط هنا لاستلام المفتاح <span class="animated-emoji" style="margin-right:6px;">🎁</span>
-            </a>
+            <div class="key-display-box" id="keyBox" onclick="copyKey()">------</div>
+            <p class="copy-tip">قم بالضغط فوق المربع لتتم عملية النسخ تلقائياً</p>
 
-            <button class="vip-btn btn-free" style="margin-top: 20px; background: rgba(255,255,255,0.03); color: #fff; border: 1px solid rgba(255,255,255,0.1);" onclick="location.reload()">🔄 إعادة المحاولة</button>
+            <button class="vip-btn btn-free" style="margin-top: 15px;" onclick="playSound('click'); location.reload()">🔄 العودة للرئيسية</button>
         </div>
     </div>
 
     <script>
+        // الأصوات الاحترافية المدمجة عبر ترميز الويب للعمل فوراً بدون ملفات خارجية
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(type) {
+            if (type === 'click') {
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, audioCtx.currentTime); 
+                osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.1);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.1);
+            } else if (type === 'success') {
+                // نغمة نجاح Ta-da ثنائية النبرة فخمة
+                let notes = [523.25, 659.25, 783.99, 1046.50]; // كورد نيون متصاعد
+                notes.forEach((freq, index) => {
+                    let osc = audioCtx.createOscillator();
+                    let gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (index * 0.08));
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime + (index * 0.08));
+                    gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + (index * 0.08) + 0.3);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(audioCtx.currentTime + (index * 0.08));
+                    osc.stop(audioCtx.currentTime + (index * 0.08) + 0.3);
+                });
+            }
+        }
+
+        // يدعم النظام هذين المفتاحين المجانيين فقط بشكل حقيقي بالكامل
+        const trueKeys = ["EX-FREE-KeY-1", "EX-FREE-KeY-2"];
+
         function switchPanel(panelId) {
             document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
             document.getElementById(panelId).classList.add('active');
@@ -399,15 +430,16 @@
             const btn = event.target;
             btn.classList.add('disabled');
             let timeLeft = seconds;
-            const timerEl = document.querySelector(`#timer${id} span`);
+            const timerEl = document.getElementById(`timer${id}`);
             
+            // عداد تنازلي حقيقي 10 ثوانٍ لجميع المهمات
             const interval = setInterval(() => {
                 timeLeft--;
                 timerEl.innerText = timeLeft;
                 if (timeLeft <= 0) {
                     clearInterval(interval);
                     if(nextPanelId === 'panel-loading') {
-                        runLoadingAndShowLink();
+                        runLoadingAndGenerateTrueKey();
                     } else {
                         switchPanel(nextPanelId);
                     }
@@ -415,11 +447,25 @@
             }, 1000);
         }
 
-        function runLoadingAndShowLink() {
+        function runLoadingAndGenerateTrueKey() {
             switchPanel('panel-loading');
             setTimeout(() => {
+                // اختيار عشوائي ذكي ومحصور بين المفتاحين الحقيقيين فقط
+                const randomIndex = Math.floor(Math.random() * trueKeys.length);
+                const ultimateKey = trueKeys[randomIndex];
+                
+                document.getElementById('keyBox').innerText = ultimateKey;
+                playSound('success'); // تشغيل صوت النجاح الملكي عند ظهور المفتاح
                 switchPanel('panel-key');
-            }, 5000); // 5 ثوانٍ في صفحة التحميل قبل إظهار رابط ماب اكسل
+            }, 5000); // 5 ثوانٍ في صفحة التحميل لزيادة الحماس والاحترافية
+        }
+
+        function copyKey() {
+            const keyText = document.getElementById('keyBox').innerText;
+            navigator.clipboard.writeText(keyText).then(() => {
+                playSound('success');
+                alert('✨ تم نسخ المفتاح بنجاح! ضعه في اللعبة الآن لتفعيل السكربت مجاناً.');
+            });
         }
     </script>
 </body>
